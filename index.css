@@ -226,3 +226,46 @@ footer {
     border-bottom: 1px solid #2c3e50;
   }
 }
+
+/* Estilos para el código en la pestaña Clase File */
+#fileClassTab pre code .keyword { color: #569cd6; }
+#fileClassTab pre code .string { color: #ce9178; }
+#fileClassTab pre code .comment { color: #6a9955; font-style: italic; }
+#fileClassTab pre code .class { color: #4ec9b0; }
+#fileClassTab pre code .method { color: #dcdcaa; }
+#fileClassTab pre code .type { color: #4ec9b0; }
+#fileClassTab pre code .number { color: #b5cea8; }
+
+/* Estilos para la tabla en la pestaña Clase File */
+#fileClassTab table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+}
+
+#fileClassTab th,
+#fileClassTab td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #34495e;
+}
+
+#fileClassTab th {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+#fileClassTab tr:nth-child(even) {
+  background-color: #2c2c2c;
+}
+
+#fileClassTab tr:nth-child(odd) {
+  background-color: #2a2a2a;
+}
+
+#fileClassTab code {
+  background-color: #34495e;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: "Fira Code", "Courier New", monospace;
+}
