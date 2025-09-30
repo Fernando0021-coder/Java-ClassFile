@@ -6,7 +6,6 @@
   <title>Sistema de Contactos - Java</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
- 
 </head>
 <body>
   <div class="container">
@@ -23,6 +22,9 @@
         <div class="tab" data-tab="output">
           <i class="fas fa-terminal"></i> Ejemplo de Salida
         </div>
+        <div class="tab" data-tab="file-class">
+          <i class="fas fa-file-code"></i> Clase File
+        </div>
       </div>
       
       <div class="code-container">
@@ -37,8 +39,8 @@
     <span class="keyword">private static</span> Scanner scanner = <span class="keyword">new</span> Scanner(System.in);
     <span class="keyword">private static</span> List&lt;String[]&gt; contactos = <span class="keyword">new</span> ArrayList&lt;&gt;();
 
-    <span class="keyword">public static void</span> <span class="method explain" data-title="guardarContactos()" data-content="Guarda todos los contactos en un archivo de texto. Recibe la lista de contactos y el nombre del archivo.">guardarContactos</span>(List&lt;String[]&gt; contactos, String archivo) <span class="method explain" data-title="throws-IOException" data-content="Esto permite que el codigo funcione a pesar de presentar errores">throws IOException</span> {
-      <span class="method explain" data-title="try" data-content="Esto sirve para que al finalizar el bloque de codigo sin importar que pase se cierre">try</span> (<span class="method explain" data-title="BufferedWriter" data-content="Es una clase en java que permite guardar texto de manera mas rapida, es muy eificiente">BufferedWriter</span> <span class="method explain" data-title="bw" data-content="es una variable">bw</span> = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> <span class="method explain"data-title="bw" data-content="Es lo que conecta el BufferedWriter al archivo">FileWriter(archivo)</span>)) {
+    <span class="keyword">public static void</span> <span class="method explain" data-title="guardarContactos()" data-content="Guarda todos los contactos en un archivo de texto. Recibe la lista de contactos y el nombre del archivo.">guardarContactos</span>(List&lt;String[]&gt; contactos, String archivo) <span class="keyword">throws</span> IOException {
+        <span class="keyword">try</span> (<span class="method explain" data-title="BufferedWriter" data-content="Es una clase en java que permite guardar texto de manera mas rapida, es muy eificiente">BufferedWriter</span> <span class="method explain" data-title="bw" data-content="es una variable">bw</span> = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> <span class="method explain"data-title="bw" data-content="Es lo que conecta el BufferedWriter al archivo">FileWriter(archivo)</span>)) {
             <span class="keyword">for</span> (String[] contacto : contactos) {
                 bw.<span class="method explain" data-title="write()" data-content="Escribe una cadena de texto en el archivo.">write</span>(contacto[0] + <span class="string">","</span> + contacto[1]);
                 bw.<span class="method explain" data-title="newLine()" data-content="Inserta un salto de línea en el archivo.">newLine</span>();
@@ -155,6 +157,165 @@ Seleccione una opción:
 =========================
 <span class="number">3</span>
  Contactos guardados en contactos.txt</code></pre>
+        
+        <div id="fileClassTab" style="display: none; padding: 25px; background-color: #1e1e1e; color: #d4d4d4; border-radius: 0 0 12px 12px; overflow-x: auto;">
+          <h3 style="color: #1abc9c; margin-bottom: 20px; border-bottom: 2px solid #1abc9c; padding-bottom: 10px;">
+            <i class="fas fa-file-alt"></i> Clase File de Java
+          </h3>
+          
+          <p style="margin-bottom: 20px; line-height: 1.6;">
+            La clase <span class="class">File</span> en Java representa archivos y directorios en el sistema de archivos. 
+            Permite realizar operaciones como crear, eliminar, renombrar y obtener información sobre archivos y directorios.
+          </p>
+          
+          <h4 style="color: #3498db; margin: 25px 0 15px 0;">Métodos Principales de la Clase File</h4>
+          
+          <div class="methods-table" style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+              <thead>
+                <tr style="background-color: #2c3e50;">
+                  <th style="padding: 12px; text-align: left; border: 1px solid #34495e;">Método</th>
+                  <th style="padding: 12px; text-align: left; border: 1px solid #34495e;">Descripción</th>
+                  <th style="padding: 12px; text-align: left; border: 1px solid #34495e;">Ejemplo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>String getName()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve el nombre del archivo o directorio</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.getName()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>String getPath()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve la ruta relativa del archivo</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.getPath()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>String getAbsolutePath()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve la ruta absoluta del archivo</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.getAbsolutePath()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean exists()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si el archivo o directorio existe</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.exists()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean canWrite()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si la aplicación puede escribir en el archivo</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.canWrite()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean canRead()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si la aplicación puede leer el archivo</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.canRead()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean isFile()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si es un archivo (no un directorio)</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.isFile()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean isDirectory()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si es un directorio</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.isDirectory()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean isAbsolute()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Verifica si la ruta es absoluta</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.isAbsolute()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>long lastModified()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve la fecha de última modificación en milisegundos</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.lastModified()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>long length()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve el tamaño del archivo en bytes</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.length()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean mkdir()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Crea el directorio especificado</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.mkdir()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean mkdirs()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Crea el directorio y todos los directorios padres necesarios</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.mkdirs()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean renameTo(File dest)</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Renombra el archivo o directorio</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.renameTo(nuevoArchivo)</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>boolean delete()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Elimina el archivo o directorio</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.delete()</code></td>
+                </tr>
+                <tr style="background-color: #2c2c2c;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>String[] list()</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve un array con los nombres de archivos en el directorio</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.list()</code></td>
+                </tr>
+                <tr style="background-color: #2a2a2a;">
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>String[] list(FilenameFilter filter)</code></td>
+                  <td style="padding: 12px; border: 1px solid #34495e;">Devuelve un array con los nombres de archivos que cumplen el filtro</td>
+                  <td style="padding: 12px; border: 1px solid #34495e;"><code>archivo.list(filtro)</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <h4 style="color: #3498db; margin: 25px 0 15px 0;">Ejemplo de Uso de la Clase File</h4>
+          
+          <pre style="background-color: #2a2a2a; padding: 15px; border-radius: 5px; overflow-x: auto; margin-bottom: 25px;">
+<code><span class="keyword">import</span> java.io.File;
+
+<span class="keyword">public class</span> <span class="class">EjemploFile</span> {
+    <span class="keyword">public static void</span> main(String[] args) {
+        <span class="comment">// Crear un objeto File</span>
+        File archivo = <span class="keyword">new</span> File(<span class="string">"contactos.txt"</span>);
+        
+        <span class="comment">// Verificar si el archivo existe</span>
+        <span class="keyword">if</span> (archivo.exists()) {
+            System.out.println(<span class="string">"El archivo existe"</span>);
+            System.out.println(<span class="string">"Nombre: "</span> + archivo.getName());
+            System.out.println(<span class="string">"Ruta absoluta: "</span> + archivo.getAbsolutePath());
+            System.out.println(<span class="string">"Tamaño: "</span> + archivo.length() + <span class="string">" bytes"</span>);
+            System.out.println(<span class="string">"Se puede leer: "</span> + archivo.canRead());
+            System.out.println(<span class="string">"Se puede escribir: "</span> + archivo.canWrite());
+        } <span class="keyword">else</span> {
+            System.out.println(<span class="string">"El archivo no existe"</span>);
+        }
+        
+        <span class="comment">// Crear un directorio</span>
+        File directorio = <span class="keyword">new</span> File(<span class="string">"mis_archivos"</span>);
+        <span class="keyword">if</span> (directorio.mkdir()) {
+            System.out.println(<span class="string">"Directorio creado exitosamente"</span>);
+        }
+        
+        <span class="comment">// Listar archivos en un directorio</span>
+        File carpetaActual = <span class="keyword">new</span> File(<span class="string">"."</span>);
+        String[] archivos = carpetaActual.list();
+        System.out.println(<span class="string">"Archivos en el directorio actual:"</span>);
+        <span class="keyword">for</span> (String nombre : archivos) {
+            System.out.println(nombre);
+        }
+    }
+}</code></pre>
+          
+          <div style="background-color: #2c3e50; padding: 15px; border-radius: 5px; margin-top: 20px;">
+            <h5 style="color: #1abc9c; margin-bottom: 10px;"><i class="fas fa-lightbulb"></i> Nota Importante</h5>
+            <p style="margin: 0; line-height: 1.6;">
+              La clase File representa una ruta abstracta que puede o no existir en el sistema de archivos. 
+              Muchos de sus métodos devuelven valores booleanos que indican si la operación fue exitosa.
+              Es importante verificar estos valores para manejar correctamente posibles errores.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -187,15 +348,11 @@ Seleccione una opción:
     </div>
 
     <footer>
-      <p>Sistema de Contactos en Java con la clase archivos- Hecho por Fernando-Alvarez</p>
+      <p>Sistema de Contactos en Java con la clase Archivos - Hecho por Fernando-Alvarez</p>
     </footer>
   </div>
 
-  
   <script src="index.js"></script>
 </body>
-
 </html>
-
-
 
