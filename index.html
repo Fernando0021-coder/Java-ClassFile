@@ -38,7 +38,7 @@
     <span class="keyword">private static</span> List&lt;String[]&gt; contactos = <span class="keyword">new</span> ArrayList&lt;&gt;();
 
     <span class="keyword">public static void</span> <span class="method explain" data-title="guardarContactos()" data-content="Guarda todos los contactos en un archivo de texto. Recibe la lista de contactos y el nombre del archivo.">guardarContactos</span>(List&lt;String[]&gt; contactos, String archivo) <span class="method explain" data-title="throws-IOException" data-content="Esto permite que el codigo funcione a pesar de presentar errores">throws IOException</span> {
-      <span class="method explain" data-title="try" data-content="Esto sirve para que al finalizar el bloque de codigo sin importar que pase se cierre">>try</span> (<span class="method explain" data-title="BufferedWriter" data-content="Es una clase en java que permite guardar texto de manera mas rapida, es muy eificiente">BufferedWriter</span> <span class="method explain" data-title="bw" data-content="es una variable">bw</span> = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> <span class="method explain"data-title="bw" data-content="Es lo que conecta el BufferedWriter al archivo">FileWriter(archivo)</span>)) {
+      <span class="method explain" data-title="try" data-content="Esto sirve para que al finalizar el bloque de codigo sin importar que pase se cierre">try</span> (<span class="method explain" data-title="BufferedWriter" data-content="Es una clase en java que permite guardar texto de manera mas rapida, es muy eificiente">BufferedWriter</span> <span class="method explain" data-title="bw" data-content="es una variable">bw</span> = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> <span class="method explain"data-title="bw" data-content="Es lo que conecta el BufferedWriter al archivo">FileWriter(archivo)</span>)) {
             <span class="keyword">for</span> (String[] contacto : contactos) {
                 bw.<span class="method explain" data-title="write()" data-content="Escribe una cadena de texto en el archivo.">write</span>(contacto[0] + <span class="string">","</span> + contacto[1]);
                 bw.<span class="method explain" data-title="newLine()" data-content="Inserta un salto de línea en el archivo.">newLine</span>();
@@ -196,5 +196,6 @@ Seleccione una opción:
 </body>
 
 </html>
+
 
 
