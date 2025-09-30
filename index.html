@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Contactos - Java</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sistema de Contactos en Java</h1>
+      <p class="subtitle">Gestión de contactos con persistencia en archivos</p>
+    </header>
+
+    <div class="card">
+      <div class="tabs">
+        <div class="tab active" data-tab="contactos">
+          <i class="fas fa-address-book"></i> Contactos.java
+        </div>
+        <div class="tab" data-tab="output">
+          <i class="fas fa-terminal"></i> Ejemplo de Salida
+        </div>
+      </div>
+      
+      <div class="code-container">
+        <button class="copy-btn" id="copyButton">
+          <i class="far fa-copy"></i> Copiar código
+        </button>
+        
+        <pre id="contactosTab"><code><span class="keyword">import</span> java.io.*;
+<span class="keyword">import</span> java.util.*;
+
+<span class="keyword">public class</span> <span class="class">Contactos</span> {
+    <span class="keyword">private static</span> Scanner scanner = <span class="keyword">new</span> Scanner(System.in);
+    <span class="keyword">private static</span> List&lt;String[]&gt; contactos = <span class="keyword">new</span> ArrayList&lt;&gt;();
+
+    <span class="keyword">public static void</span> <span class="method explain" data-title="guardarContactos()" data-content="Guarda todos los contactos en un archivo de texto. Recibe la lista de contactos y el nombre del archivo.">guardarContactos</span>(List&lt;String[]&gt; contactos, String archivo) <span class="keyword">throws</span> IOException {
+        <span class="keyword">try</span> (<span class="method explain" data-title="BufferedWriter" data-content="Es una clase en java que permite guardar texto de manera mas rapida, es muy eificiente">BufferedWriter</span> <span class="method explain" data-title="bw" data-content="es una variable">bw</span> = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> <span class="method explain"data-title="bw" data-content="Es lo que conecta el BufferedWriter al archivo">FileWriter(archivo)</span>)) {
+            <span class="keyword">for</span> (String[] contacto : contactos) {
+                bw.<span class="method explain" data-title="write()" data-content="Escribe una cadena de texto en el archivo.">write</span>(contacto[0] + <span class="string">","</span> + contacto[1]);
+                bw.<span class="method explain" data-title="newLine()" data-content="Inserta un salto de línea en el archivo.">newLine</span>();
+            }
+        }
+    }
+
+    <span class="keyword">public static void</span> <span class="method explain" data-title="mostrarContactos()" data-content="Lee y muestra todos los contactos desde el archivo especificado.">mostrarContactos</span>(String archivo) <span class="keyword">throws</span> IOException {
+        System.out.println(<span class="string">"Lista de contactos:"</span>);
+        <span class="keyword">try</span> (BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(archivo))) {
+            String linea;
+            <span class="keyword">while</span> ((linea = br.<span class="method explain" data-title="readLine()" data-content="Lee el textop hasta que haya un salto de linea y luego lo devuelve.Ej Hola que tal? devuelve el 'Hola' primero, y este ciclo se repite hasta que ya no haya palabras">readLine</span>()) != <span class="keyword">null</span>) {
+                String[] partes = linea.<span class="method explain" data-title="split()" data-content="Divide una cadena usando la coma como separador.">split</span>(<span class="string">","</span>);
+                System.out.println(<span class="string">"Nombre: "</span> + partes[0] + <span class="string">", Teléfono: "</span> + partes[1]);
+            }
+        }
+    }
+
+    <span class="keyword">public static void</span> <span class="method explain" data-title="agregarContacto()" data-content="Solicita al usuario nombre y teléfono, luego añade el contacto a la lista.">agregarContacto</span>() {
+        System.out.print(<span class="string">"Ingrese el nombre: "</span>);
+        String nombre = scanner.nextLine();
+        
+        System.out.print(<span class="string">"Ingrese el teléfono: "</span>);
+        String telefono = scanner.nextLine();
+        
+        String[] nuevoContacto = {nombre, telefono};
+        contactos.<span class="method explain" data-title="add()" data-content="Añade un nuevo elemento a la lista de contactos.">add</span>(nuevoContacto);
+        
+        System.out.println(<span class="string">" Contacto agregado correctamente!"</span>);
+    }
+
+    <span class="keyword">public static void</span> <span class="method explain" data-title="mostrarMenu()" data-content="Muestra el menú principal con las opciones disponibles.">mostrarMenu</span>() {
+        System.out.println(<span class="string">"\n=== MENU DE CONTACTOS ==="</span>);
+        System.out.println(<span class="string">"1. Agregar contacto"</span>);
+        System.out.println(<span class="string">"2. Mostrar contactos"</span>);
+        System.out.println(<span class="string">"3. Guardar y salir"</span>);
+        System.out.print(<span class="string">"Seleccione una opción: "</span>);
+        System.out.println(<span class="string">"\n========================="</span>);
+    }
+
+    <span class="keyword">public static void</span> main(String[] args) {
+        String archivo = <span class="string">"contactos.txt"</span>;
+        <span class="type">int</span> opcion;
+        
+        <span class="keyword">do</span> {
+            <span class="method explain" data-title="mostrarMenu()" data-content="Muestra el menú principal con las opciones disponibles.">mostrarMenu</span>();
+            opcion = scanner.nextInt();
+            scanner.nextLine(); 
+            
+            <span class="keyword">try</span> {
+                <span class="keyword">switch</span> (opcion) {
+                    <span class="keyword">case</span> 1:
+                        <span class="method explain" data-title="agregarContacto()" data-content="Solicita al usuario nombre y teléfono, luego añade el contacto a la lista.">agregarContacto</span>();
+                        <span class="keyword">break</span>;
+                    <span class="keyword">case</span> 2:
+                        <span class="method explain" data-title="mostrarContactos()" data-content="Lee y muestra todos los contactos desde el archivo especificado.">mostrarContactos</span>(archivo);
+                        <span class="keyword">break</span>;
+                    <span class="keyword">case</span> 3:
+                        <span class="method explain" data-title="guardarContactos()" data-content="Guarda todos los contactos en un archivo de texto.">guardarContactos</span>(contactos, archivo);
+                        System.out.println(<span class="string">" Contactos guardados en "</span> + archivo);
+                        <span class="keyword">break</span>;
+                    <span class="keyword">default</span>:
+                        System.out.println(<span class="string">" Opcion no valida"</span>);
+                }
+            } <span class="keyword">catch</span> (IOException e) {
+                System.out.println(<span class="string">"Error: "</span> + e.<span class="method explain" data-title="getMessage()" data-content="Devuelve el mensaje de error de la excepción.">getMessage</span>());
+            }
+        } <span class="keyword">while</span> (opcion != 3);
+        
+        scanner.<span class="method explain" data-title="close()" data-content="Cierra el scanner y libera los recursos del sistema.">close</span>();
+    }
+}</code></pre>
+        
+        <pre id="outputTab" style="display: none;"><code><span class="comment">// Ejemplo de salida al ejecutar el programa:</span>
+
+=== MENU DE CONTACTOS ===
+1. Agregar contacto
+2. Mostrar contactos
+3. Guardar y salir
+Seleccione una opción: 
+=========================
+<span class="number">1</span>
+Ingrese el nombre: <span class="string">Juan Pérez</span>
+Ingrese el teléfono: <span class="string">123-456-7890</span>
+ Contacto agregado correctamente!
+
+=== MENU DE CONTACTOS ===
+1. Agregar contacto
+2. Mostrar contactos
+3. Guardar y salir
+Seleccione una opción: 
+=========================
+<span class="number">1</span>
+Ingrese el nombre: <span class="string">María García</span>
+Ingrese el teléfono: <span class="string">987-654-3210</span>
+ Contacto agregado correctamente!
+
+=== MENU DE CONTACTOS ===
+1. Agregar contacto
+2. Mostrar contactos
+3. Guardar y salir
+Seleccione una opción: 
+=========================
+<span class="number">2</span>
+Lista de contactos:
+Nombre: Juan Pérez, Teléfono: 123-456-7890
+Nombre: María García, Teléfono: 987-654-3210
+
+=== MENU DE CONTACTOS ===
+1. Agregar contacto
+2. Mostrar contactos
+3. Guardar y salir
+Seleccione una opción: 
+=========================
+<span class="number">3</span>
+ Contactos guardados en contactos.txt</code></pre>
+      </div>
+    </div>
+
+    <div class="info-panel">
+      <h3><i class="fas fa-info-circle"></i> Información del Programa</h3>
+      <p>Este programa Java implementa un sistema simple de gestión de contactos que permite agregar contactos, mostrarlos y guardarlos en un archivo de texto. Utiliza las clases <code>FileWriter</code>, <code>BufferedWriter</code>, <code>FileReader</code> y <code>BufferedReader</code> para la manipulación de archivos.</p>
+      <p><strong>💡 Tip:</strong> Pasa el mouse sobre cualquier función o método subrayado para ver una explicación detallada.</p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3><i class="fas fa-plus-circle"></i> Funcionalidades</h3>
+        <ul>
+          <li>Agregar nuevos contactos con nombre y teléfono</li>
+          <li>Mostrar todos los contactos guardados</li>
+          <li>Guardar contactos en un archivo de texto</li>
+          <li>Interfaz de menú interactiva</li>
+        </ul>
+      </div>
+      
+      <div class="feature">
+        <h3><i class="fas fa-cogs"></i> Características Técnicas</h3>
+        <ul>
+          <li>Uso de ArrayList para almacenamiento en memoria</li>
+          <li>Manejo de excepciones con try-catch</li>
+          <li>Try-with-resources para gestión automática de recursos</li>
+          <li>Persistencia de datos en archivo CSV simple</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <p>Sistema de Contactos en Java - Ejemplo educativo</p>
+    </footer>
+  </div>
+
+  
+  <script src="index.js"></script>
+</body>
+</html>
